@@ -1,8 +1,8 @@
 package com.generation.employee;
 
-import javax.swing.BoundedRangeModel;
 
-public class Employee {
+
+ public class Employee {
 	String firstName;
 	String lastName;
 	int registration;
@@ -11,7 +11,6 @@ public class Employee {
 	int vacationDaysTaken;
 	double salary;
 	int yearsWorked;
-	
 	
 	
 	public Employee(String firstName, String lastName, int registration, int age, int daysWorked, int vacationDaysTaken,
@@ -25,13 +24,26 @@ public class Employee {
 		this.salary = salary;
 		this.yearsWorked = yearsWorked;
 	}//constructor
+	
 
-	///funciones
-	public int timeToRetirement(int age){
+	///methods
+	public int timeToRetirement(){
 		//retirement year 60
-		int currentyear= 2024;
-		int retireyear = 60-age; 
-		return retireyear;
+		int retByAge=60-age;
+		int retByYrsWorkd=40-yearsWorked;
+		
+		if(age==60 || yearsWorked == 40){
+			return 0;
+		}//if
+		else{
+			
+			if(retByAge>retByYrsWorkd){
+				return retByYrsWorkd;
+			}//ifAnidado
+			else{
+				return retByAge;
+			}//elseAnidado
+		}//else
 	}//timeToRetirement
 	
 	public int vacationTimeLeft(int vacationDaysTaken){
@@ -45,10 +57,10 @@ public class Employee {
 		//bonus 2xSalary
 		double bonus = salary=salary+salary*2;
 		return bonus;
-	}//function bonus
+	}//bonus
 
 	public String getFirstName() {
-		return firstName;
+		return firstName.toUpperCase();
 	}//getFirstName
 
 	public void setFirstName(String firstName) {
@@ -56,7 +68,7 @@ public class Employee {
 	}//setFirstName
 
 	public String getLastName() {
-		return lastName;
+		return lastName.toUpperCase();
 	}//getLastName
 
 	public void setLastName(String lastName) {
@@ -77,6 +89,7 @@ public class Employee {
 
 	public void setAge(int age) {
 		this.age = age;
+		
 	}//setAge
 
 	public int getDaysWorked() {
@@ -109,7 +122,18 @@ public class Employee {
 
 	public void setYearsWorked(int yearsWorked) {
 		this.yearsWorked = yearsWorked;
-	}
+	}//setyearsWorked
+
+
+	@Override
+	public String toString() {
+		return "Employee: " + firstName + " " + lastName + ", registration: " + registration
+				+ ", age: " + age + ", daysWorked:" + daysWorked + ", vacationDaysTaken:" + vacationDaysTaken
+				+ ", salary:" + salary + ", yearsWorked: " + yearsWorked;
+	}//toString
+	
+	
+	
 	
 	
 }//class Employee
